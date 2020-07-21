@@ -1,0 +1,22 @@
+[
+  {
+    "name": "name",
+    "type": "string"
+  },
+  {
+    "name": "age",
+    "type": "int"
+  },
+  {
+    "name": "addresses",
+    "type": "array<string>"
+  },
+  {
+    "name": "phones",
+    "type": "array<struct<number:string,type:string>>"
+  },
+  {
+    "name": "entry_timestamp",
+    "type": "timestamp"
+  }
+]
