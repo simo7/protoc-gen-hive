@@ -44,18 +44,8 @@ func main() {
 	})
 }
 
-func lineFmt(indentLevel int, args ...string) string {
-	line := strings.Repeat("  ", indentLevel)
-	for i, arg := range args {
-		if arg == "" {
-			continue
-		}
-		if i > 0 && i < len(args)-1 {
-			line += " "
-		}
-		line += arg
-	}
-	return line
+func getIndent(indentLevel int) string {
+	return strings.Repeat(" ", indentLevel*2)
 }
 
 func generateFile(gen *protogen.Plugin, file *protogen.File) {
@@ -68,8 +58,8 @@ func generateFile(gen *protogen.Plugin, file *protogen.File) {
 			continue
 		}
 
-		optValue := proto.GetExtension(opts, hiveOpts.E_HiveMessageOpts)
-		tableName := optValue.(*hiveOpts.HiveMessageOptions).GetTableName()
+		optValue := proto.GetExtension(opts, hiveOpts.E_MessageOpts)
+		tableName := optValue.(*hiveOpts.MessageOptions).GetTableName()
 
 		if tableName == "" {
 			continue
@@ -81,15 +71,15 @@ func generateFile(gen *protogen.Plugin, file *protogen.File) {
 		g.P("[")
 
 		for i, field := range message.Fields {
-			g.P(lineFmt(1, "{"))
+			g.P("  {")
 
 			generateField(g, field.Desc, 2)
 
 			if i == len(message.Fields)-1 {
-				g.P(lineFmt(1, "}"))
+				g.P("  }")
 				continue
 			}
-			g.P(lineFmt(1, "},"))
+			g.P("  },")
 		}
 
 		g.P("]")
@@ -101,8 +91,8 @@ func generateField(g *protogen.GeneratedFile, field protoreflect.FieldDescriptor
 	protoKind := field.Kind().String()
 	fieldType := generateFieldType(field, fieldName, protoKind)
 
-	g.P(lineFmt(indentLevel, fmt.Sprintf(`"name": "%s",`, fieldName)))
-	g.P(lineFmt(indentLevel, fmt.Sprintf(`"type": "%s"`, fieldType)))
+	g.P(fmt.Sprintf(`%s"name": "%s",`, getIndent(indentLevel), fieldName))
+	g.P(fmt.Sprintf(`%s"type": "%s"`, getIndent(indentLevel), fieldType))
 }
 
 func generateFieldType(field protoreflect.FieldDescriptor, fieldName string, protoKind string) string {
@@ -114,8 +104,8 @@ func generateFieldType(field protoreflect.FieldDescriptor, fieldName string, pro
 
 	opts := field.Options()
 	if opts.ProtoReflect().IsValid() {
-		optValue := proto.GetExtension(opts, hiveOpts.E_HiveFieldOpts)
-		fieldType = optValue.(*hiveOpts.HiveFieldOptions).GetTypeOverride()
+		optValue := proto.GetExtension(opts, hiveOpts.E_FieldOpts)
+		fieldType = optValue.(*hiveOpts.FieldOptions).GetTypeOverride()
 	}
 
 	if protoKind == "message" {

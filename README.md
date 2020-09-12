@@ -13,7 +13,7 @@ go get github.com/simo7/protoc-gen-gluecatalog
 Alternatively clone the repo and build the plugin:
 
 ```bash
-go build -o bin/protoc-gen-hive -ldflags -s .
+go build -o bin/protoc-gen-gluecatalog .
 
 export PATH=$PWD/bin:$PATH
 ```
@@ -24,7 +24,6 @@ export PATH=$PWD/bin:$PATH
 protoc \
     --gluecatalog_out=./ \
     --gluecatalog_opt=paths=source_relative \
-    --proto_path=./ \
     examples/person.proto
 ```
 

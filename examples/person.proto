@@ -5,7 +5,7 @@ option go_package = "./examples";
 import "hive_options/hive_options.proto";
 
 message Person {
-  option (hive_options.hive_message_opts).table_name = "person";
+  option (hive_options.message_opts).table_name = "person";
 
   string name = 1;
   int32 age = 2;
@@ -25,5 +25,5 @@ message Person {
   repeated PhoneNumber phones = 4;
 
   int64 entry_timestamp = 5
-      [ (hive_options.hive_field_opts) = {type_override : "timestamp"} ];
+      [ (hive_options.field_opts) = {type_override : "timestamp"} ];
 }
