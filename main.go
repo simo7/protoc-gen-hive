@@ -109,9 +109,16 @@ func generateFieldType(field protoreflect.FieldDescriptor, fieldName string, pro
 	}
 
 	if protoKind == "message" {
+		fds := field.Message().Fields()
+
+		if fds.Len() > 0 {
+			if isProtoTimestamp(fds.Get(0)) {
+				return "timestamp"
+			}
+		}
+
 		var messageFields []string
 
-		fds := field.Message().Fields()
 		for i := 0; i < fds.Len(); i++ {
 			field := fds.Get(i)
 			fieldName := string(field.Name())
@@ -130,4 +137,8 @@ func generateFieldType(field protoreflect.FieldDescriptor, fieldName string, pro
 	}
 
 	return fieldType
+}
+
+func isProtoTimestamp(fd protoreflect.FieldDescriptor) bool {
+	return strings.HasPrefix(string(fd.FullName()), "google.protobuf.Timestamp.")
 }

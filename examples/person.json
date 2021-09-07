@@ -16,7 +16,15 @@
     "type": "array<struct<number:string,type:string>>"
   },
   {
-    "name": "entry_timestamp",
+    "name": "created_at",
+    "type": "timestamp"
+  },
+  {
+    "name": "updated_at",
+    "type": "timestamp"
+  },
+  {
+    "name": "generated_at",
     "type": "timestamp"
   }
 ]

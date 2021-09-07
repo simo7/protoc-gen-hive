@@ -1,8 +1,11 @@
 syntax = "proto3";
 
-option go_package = "./examples";
+package examples;
+
+option go_package = "github.com/simo7/protoc-gen-gluecatalog/examples";
 
 import "hive_options/hive_options.proto";
+import "google/protobuf/timestamp.proto";
 
 message Person {
   option (hive_options.message_opts).table_name = "person";
@@ -24,6 +27,11 @@ message Person {
 
   repeated PhoneNumber phones = 4;
 
-  int64 entry_timestamp = 5
+  int64 created_at = 5
       [ (hive_options.field_opts) = {type_override : "timestamp"} ];
+
+  google.protobuf.Timestamp updated_at = 6
+      [ (hive_options.field_opts) = {type_override : "timestamp"} ];
+
+  google.protobuf.Timestamp generated_at = 7;
 }

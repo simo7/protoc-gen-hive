@@ -27,6 +27,14 @@ protoc \
     examples/person.proto
 ```
 
+## Well-known Protobuf types
+
+Reference: https://developers.google.com/protocol-buffers/docs/reference/google.protobuf.
+
+The following types are supported:
+
+- [x] `google.protobuf.Timestamp`
+
 ## Compatibility
 
 It's tested against the new protobuf API `google.golang.org/protobuf` or version `1.4.0` of the legacy API `github.com/golang/protobuf`.
