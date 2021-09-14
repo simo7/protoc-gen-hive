@@ -1,4 +1,4 @@
-# protoc-gen-gluecatalog
+# protoc-gen-hive
 
 A protoc plugin that generates json-formatted Hive schemas from protobuf files. See [examples](./examples).
 
@@ -7,13 +7,13 @@ Json is a convenient format to intereact with the AWS Glue API and create/update
 ## Installation
 
 ```bash
-go get github.com/simo7/protoc-gen-gluecatalog
+go get github.com/simo7/protoc-gen-hive
 ```
 
 Alternatively clone the repo and build the plugin:
 
 ```bash
-go build -o bin/protoc-gen-gluecatalog .
+go build -o bin/protoc-gen-hive .
 
 export PATH=$PWD/bin:$PATH
 ```
@@ -22,8 +22,8 @@ export PATH=$PWD/bin:$PATH
 
 ```bash
 protoc \
-    --gluecatalog_out=./ \
-    --gluecatalog_opt=paths=source_relative \
+    --hive_out=./ \
+    --hive_opt=paths=source_relative \
     examples/person.proto
 ```
 

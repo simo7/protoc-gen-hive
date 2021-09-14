@@ -8,7 +8,7 @@ import (
 
 	"github.com/golang/glog"
 
-	hiveOpts "github.com/simo7/protoc-gen-gluecatalog/hive_options"
+	hiveOpts "github.com/simo7/protoc-gen-hive/hive_options"
 
 	"google.golang.org/protobuf/compiler/protogen"
 	"google.golang.org/protobuf/proto"

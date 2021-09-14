@@ -1,4 +1,4 @@
-module github.com/simo7/protoc-gen-gluecatalog
+module github.com/simo7/protoc-gen-hive
 
 go 1.14
 

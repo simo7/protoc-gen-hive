@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package examples;
 
-option go_package = "github.com/simo7/protoc-gen-gluecatalog/examples";
+option go_package = "github.com/simo7/protoc-gen-hive/examples";
 
 import "hive_options/hive_options.proto";
 import "google/protobuf/timestamp.proto";
