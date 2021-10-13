@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package hive_options;
 
-option go_package = "github.com/simo7/hive_options";
+option go_package = "github.com/simo7/protoc-gen-hive/hive_options";
 
 import "google/protobuf/descriptor.proto";
 
